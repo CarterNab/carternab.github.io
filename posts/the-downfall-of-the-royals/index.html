@@ -201,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>The Kansas City Royals won the World Series in 1985 only to go on a thirty year drought. Their miraculous run in 2015 started with the ALDS vs the Houston Astros where the Royals won the series 3-2. Next they faced the Toronto Blue Jays in the AL championship where the Royals won the series 4-2. Lastly, facing the New York Mets in the World Series where the Royals destroyed them 4-1 in the series.</p>
 <p>Since winning it all, the Royals have strung together some rather atrocious seasons. To be a playoff caliber ball club, you must excel on both sides of the game, offense and defense which the Royals haven’t seemed to do.</p>
-<p>The story that I’m aiming to tell here is the downfall of the Kansas City Royals since winning the World Series in 2015. I hypothesize that since 2015 the Royals have fallen well below average in three different phases of the game: Pitching, Fielding, and Batting. In order to investigate the Royals on these three phases, we need to look at change over time (2015-2022). The metrics I’ve chosen to look at are Earned Run Average (ERA) for Pitching, Defensive Efficiency (% of balls in play converted into outs) for Fielding, and Batting Average (hits/at bats) for Batting.</p>
+<p>The story that I’m aiming to tell here is the downfall of the Kansas City Royals since winning the World Series in 2015. I hypothesize that since 2015 the Royals have fallen well below average in three different phases of the game: Pitching, Fielding, and Batting. In order to investigate the Royals on these three phases, we need to look at change over time (2015-2022). The metrics I’ve chosen to look at are Earned Run Average (ERA) for Pitching, Defensive Efficiency (% of balls in play converted into outs) for Fielding, and Batting Average (hits/at bats) and Slugging % (total bases/at bats) for Batting.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -225,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_ERA=</span><span class="fu">mean</span>(ERA))</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>pitching, <span class="fu">aes</span>(<span class="at">x=</span>Season, <span class="at">y=</span>ERA, <span class="at">group=</span>Tm), <span class="at">color=</span><span class="st">"light grey"</span>) <span class="sc">+</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>yalsP, <span class="fu">aes</span>(<span class="at">x=</span>Season, <span class="at">y=</span>ERA), <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>yalsP, <span class="fu">aes</span>(<span class="at">x=</span>Season, <span class="at">y=</span>ERA), <span class="at">color=</span><span class="st">"#004687"</span>) <span class="sc">+</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>averageERA, <span class="fu">aes</span>(<span class="at">x=</span>Season, <span class="at">y=</span>mean_ERA), <span class="at">color=</span><span class="st">"black"</span>)<span class="sc">+</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>)) <span class="sc">+</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
@@ -304,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>hex= #004687 Defensive Efficiency calculates the percentage of balls hit into play that are turned into outs. Most teams at the professional level are quite good at this so the deviation from team to team stays with-in about 10%.</p>
+<p>Defensive Efficiency calculates the percentage of balls hit into play that are turned into outs. Most teams at the professional level are quite good at this so the deviation from team to team stays with-in about 10%.</p>
 <p>The only time in the last seven years the Royals were above the league average was in 2015, since then they continue to move further below average and were particularly bad in this 2022 season.</p>
 <div class="cell">
 <details>
@@ -328,12 +328,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>batting, <span class="fu">aes</span>(<span class="at">x=</span>BA, <span class="at">y=</span>SLG, <span class="at">group=</span>Tm), <span class="at">color=</span><span class="st">"light grey"</span>) <span class="sc">+</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>yalsO, <span class="fu">aes</span>(<span class="at">x=</span>BA, <span class="at">y=</span>SLG), <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>yalsO, <span class="fu">aes</span>(<span class="at">x=</span>BA, <span class="at">y=</span>SLG), <span class="at">color=</span><span class="st">"#004687"</span>) <span class="sc">+</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data=</span>yalsO, <span class="fu">aes</span>(<span class="at">x=</span>BA, <span class="at">y=</span>SLG, <span class="at">label=</span>teamseason), <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Year"</span>, </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"Batting Average"</span>, </span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Royals Batting Average Is Heading In The Wrong Direction"</span>, </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Batting Average"</span>, </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"Slugging %"</span>, </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"The Royals Offense Is Heading In The Wrong Direction"</span>, </span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle=</span><span class="st">"KC's front office should invest in some better hitters if they want to be relevant again"</span>,</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Source: Sports-Reference | By Carter Nab"</span></span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
@@ -350,9 +350,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Compared to the last two charts that analyzed the defensive phases of the game, this chart takes a look at the offensive side of the game represented by each teams batting average over the last seven years.</p>
-<p>While this still shows constant decline the Royals have managed to remain much closer to the leagues average compared to their defensive phases but it’s clear that the Royals offense hasn’t made significant progress since their World Series season.</p>
-<p>In order for the Kansas City Royals to become relevant in the MLB again, the front office will definitely need to re-access the members of the team and attain some new athletes that find into the puzzel of a quality baseball team.</p>
+<p>Compared to the last two charts that analyzed the defensive phases of the game, this chart takes a look at the offensive side of the game represented by each teams batting average and slugging percentage over the last seven years.</p>
+<p>It’s clear that the Royals offense hasn’t made significant progress since their World Series season, 2017 was the closest they’ve been but still failed to make the playoffs.</p>
+<p>In order for the Kansas City Royals to become relevant in the MLB again, the front office will definitely need to re-access the members of the team and attain some new athletes that fit into the puzzel of a quality baseball team.</p>
 
 
 
